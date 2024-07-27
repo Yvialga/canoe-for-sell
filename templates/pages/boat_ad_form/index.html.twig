@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BoatAdController!{% endblock %}
+
+{# https://symfony.com/doc/current/form/form_customization.html#form-variables-reference
+ https://symfony.com/doc/current/reference/forms/types/submit.html #}
+{% block body %}
+
+{% if not app.user %}
+    <p>Vous devez être connecté pour poster une annonce.</p>
+    <div>
+        <a href="{{ path('app_index') }}" class="underline hover:no-underline">Revenir à l'accueil</a>
+        <a href="{{ path('app_login')}}" class="underline hover:no-underline">Se connecter</a>
+    </div>
+{% else %}
+    
+{{ form_start(form, {'method': 'POST'}, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div>
+        {{ form_errors(form) }}
+    </div>
+
+    {# <div id="ici">
+        <label for="{{ field_label(form.title) }}">{{ field_name(form.title) }}</label>
+        {{ form_widget(form.title)}}
+    </div> #}
+    <div class="flex flex-col items-start">
+        {{ form_label(form.title, null, {
+            'label': "Titre de l'annonce"
+        }) }}
+        {{ form_errors(form.title) }}
+        {{ form_widget(form.title, {'attr': {'class': 'border'}}) }}
+        {{ form_help(form.title) }}
+    </div>
+
+    
+
+    {# <input name="{{ field_name(form.price)}}" value="{{ field_value(form.price) }}" placeholder="{{ field_label(form.price) }}"> #}
+
+{{ form_end(form) }}
+{% endif %}
+
+{% endblock %}
