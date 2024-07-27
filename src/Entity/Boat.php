@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BoatRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\component\validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BoatRepository::class)]
 class Boat
@@ -14,6 +15,7 @@ class Boat
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
     
@@ -26,6 +28,7 @@ class Boat
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $brand = null;
 
+    #[Assert\Range(min: 1, max: 20)]
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $numberOfPlaces = null;
 
@@ -148,6 +151,9 @@ class Boat
         return $this->fk_boat_user;
     }
 
+    /** set an user for the ad.
+     * @param 
+     */
     public function setFKBoatUser(?User $fk_boat_user): static
     {
         $this->fk_boat_user = $fk_boat_user;
