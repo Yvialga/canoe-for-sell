@@ -19,10 +19,6 @@
         {{ form_errors(form) }}
     </div>
 
-    {# <div id="ici">
-        <label for="{{ field_label(form.title) }}">{{ field_name(form.title) }}</label>
-        {{ form_widget(form.title)}}
-    </div> #}
     <div class="flex flex-col items-start">
         {{ form_label(form.title, null, {
             'label': "Titre de l'annonce"
@@ -32,7 +28,7 @@
         {{ form_help(form.title) }}
     </div>
 
-    
+    {# {{ form_row(form.picture) }} #}
 
     {# <input name="{{ field_name(form.price)}}" value="{{ field_value(form.price) }}" placeholder="{{ field_label(form.price) }}"> #}
 

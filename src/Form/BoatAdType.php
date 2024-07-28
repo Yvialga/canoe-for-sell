@@ -3,14 +3,17 @@
 namespace App\Form;
 
 use App\Entity\Boat;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class BoatAdType extends AbstractType
 {
@@ -43,6 +46,20 @@ class BoatAdType extends AbstractType
             ->add('description', TextareaType::class, [
                 "attr" => ['class' => "border"]
             ])
+            // ->add('picture', FileType::class, [
+            //     'label' => 'Illustration (jpg, png or jpeg file)',
+            //     'mapped'=> false,
+            //     'required' => false,
+            //     'constraints' => [
+            //         new File([
+            //             // 'maxSize' => '4000k',
+            //             'mimeTypes' => [
+            //                 'images/*',
+            //             ],
+            //             'mimeTypesMessage' => "file : {{ file }} is not a valid image. ({{ name }}, {{ type }}, {{ types }})"
+            //         ])
+            //     ]
+            // ])
             ->add('texte', SubmitType::class, [
                 'label' => "coucou",
                 "attr" => ['class' => "btn"]
@@ -56,4 +73,14 @@ class BoatAdType extends AbstractType
             'data_class' => Boat::class,
         ]);
     }
+
+    // public function configureFields(string $pageName): iterable {
+
+    //     return [
+    //         ImageField::new(picture, 'Picture')
+    //         ->setUploadDir('public/uploads/picture/img')
+    //         ->setBasePath('uploads/picture/img')
+    //         ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+    //     ];
+    // }
 }
