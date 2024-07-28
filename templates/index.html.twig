@@ -3,5 +3,11 @@
 {% block title %}Accueil d'app{% endblock %}
 
 {% block body %}
-<p data-controller="hello">ceci est du texte</p>
+
+<div class="flex flex-wrap">
+{% for boat in boatsList %}
+    <twig:BoatCard image="" title="{{ boat.title }}" price="{{ boat.price}}" boatType="{{ boat.boatType }}" />
+{% endfor %}
+</div>
+
 {% endblock %}
