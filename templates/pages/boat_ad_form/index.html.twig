@@ -28,6 +28,15 @@
         {{ form_help(form.title) }}
     </div>
 
+    <div class="flex flex-col items-start">
+        {{ form_label(form.picture, null, {
+            'label': "Titre de l'annonce"
+        }) }}
+        {{ form_errors(form.picture) }}
+        {{ form_widget(form.picture, {'attr': {'class': 'border'}}) }}
+        {{ form_help(form.picture) }}
+    </div>
+
     {# {{ form_row(form.picture) }} #}
 
     {# <input name="{{ field_name(form.price)}}" value="{{ field_value(form.price) }}" placeholder="{{ field_label(form.price) }}"> #}

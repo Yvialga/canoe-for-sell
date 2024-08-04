@@ -39,13 +39,13 @@ class BoatController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
-            // $pictureFile = $form->get('picture')->getData();
+            $pictureFile = $form->get('picture')->getData();
 
-            // if ($pictureFile) { // check if a file is upload and processed it only in this case
-            //     $pictureFilename = $fileUploader->upload($pictureFile);
-            //     // updates the pictureFilename property to store the Image file instead of its contents
-            //     $boatAd->setPictureFilename($pictureFilename);
-            // }
+            if ($pictureFile) { // check if a file is upload and processed it only in this case
+                $pictureFilename = $fileUploader->upload($pictureFile);
+                // updates the pictureFilename property to store the Image file instead of its contents
+                $boatAd->setPictureFilename($pictureFilename);
+            }
             
             $boatAd = $form->getData();
             $boatAd->setDateCreation($clock->now());

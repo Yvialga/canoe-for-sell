@@ -41,9 +41,9 @@ class Boat
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    // #[Assert\NotBlank]
-    // #[ORM\Column(type: 'string')]
-    // private ?string $pictureFilename = null;
+    #[Assert\NotBlank]
+    #[ORM\Column(type: 'string')]
+    private ?string $pictureFilename = null;
 
     #[ORM\ManyToOne(inversedBy: 'fk_boat_user')]
     #[ORM\JoinColumn(nullable: false)]
@@ -150,17 +150,22 @@ class Boat
         return $this;
     }
 
-    // public function getPictureFilename(): string {
+    public function getPictureFilename(): string {
         
-    //     return $this->pictureFilename;
-    // }
-
-    // public function setPictureFilename(string $newPictureFilename): self {
+        if (!$this->pictureFilename) return null;
         
-    //     $this->pictureFilename = $newPictureFilename;
+        else if (strpos($this->pictureFilename, '/') != false) {
+            return $this->pictureFilename;
+        }
+        return sprintf('uploads/pictures/%s', $this->pictureFilename);
+    }
 
-    //     return $this;
-    // }
+    public function setPictureFilename(string $newPictureFilename): self {
+        
+        $this->pictureFilename = $newPictureFilename;
+
+        return $this;
+    }
 
     public function getFKBoatUser(): ?User
     {

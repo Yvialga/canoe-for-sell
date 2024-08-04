@@ -22,7 +22,7 @@ class FileUploader {
         // $safeFilename = $this->slugger->slug($originalFilename);
         // generate a unique name and let symfony guess the right extension for don't trust the input provided by user
         $file->getError();
-        $newFilename = md5(uniqid().'.'.$file->guessExtension());
+        $newFilename = md5(uniqid()).'.'.$file->guessExtension();
 
         try {
             // moving file chere pictures are stored
