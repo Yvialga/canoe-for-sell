@@ -1,8 +1,17 @@
-<div class="border px-4 hover:bg-slate-200">
-    <a href="">
-        <img src="{{ image }}" alt="">
+<a href="/boat/{{ id }}">
+ <div class="max-w-xs">
+    <img src="{{ image }}" alt="Image illustrant l'annonce" width="" class="h-72 object-cover">
+    <div class="px-4 py-2.5 border-x-2 border-b-2 rounded-b-lg">
+        <em class="not-italic">{{ price }}€</em>
         <h4 class="first-letter:uppercase">{{ title }}</h4>
-        <em>{{ price }} €</em>
-        <p>{{ boatType }}</p>
-    </a>
-</div>
+        <div class="flex justify-between">
+            <p>Particulier</p>
+            <p>
+                <span class="uppercase">{{ brand }}</span>
+                - 
+                <span>{{ type }}</span>
+            </p>
+        </div>
+    </div>
+ </div>
+</a>

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div>
+    <p>Page du bateau n°{{ boat.id }}</p>
+    <p>{{ boat.title }}</p>
+    <img src="../{{ boat.pictureFileName }}" alt="Illustration de l'annonce" width="300">
+</div>
+
+{% endblock %}

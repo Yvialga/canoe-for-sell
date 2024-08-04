@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Boat;
 use App\Form\BoatAdType;
+use App\Repository\BoatRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +22,21 @@ class BoatController extends AbstractController
         $boats = $entityManager->getRepository(Boat::class)->findAll();
 
         return $boats;
+    }
+
+    #[Route('/boat/{id}', name: 'boat_show')]
+    public function show(BoatRepository $boatRepository, int $id): Response {
+
+        $boat = $boatRepository->find($id);
+
+        if (!$boat) {
+            throw $this->createNotFoundException('No boat with id' . $id . ' exist');
+        }
+
+        return $this->render('pages/boat/show.html.twig', [
+            'boat' => $boat,
+            
+        ]);
     }
 
     #[Route('/new-ad', name: 'app_new_ad')]

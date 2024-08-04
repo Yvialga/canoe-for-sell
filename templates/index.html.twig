@@ -4,9 +4,9 @@
 
 {% block body %}
 
-<div class="flex flex-wrap">
+<div class="flex flex-wrap justify-center sm:justify-start gap-5">
 {% for boat in boatsList %}
-    <twig:BoatCard image="" title="{{ boat.title }}" price="{{ boat.price}}" boatType="{{ boat.boatType }}" />
+    <twig:BoatCard image="{{ boat.pictureFileName }}" title="{{ boat.title }}" price="{{ boat.price}}" brand="{{ boat.brand }}" type="{{ boat.boatType }}" id='{{ boat.id }}' />
 {% endfor %}
 </div>
 
