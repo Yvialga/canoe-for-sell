@@ -43,7 +43,7 @@ class CheckoutController extends AbstractController
         try {
             return $this->redirectToRoute($checkout_session->url);
         } catch (RouteNotFoundException $e) {
-            throw new RouteNotFoundException("La route n'a pas été trouvé", 1);
+            throw new RouteNotFoundException("La page n'a pas été trouvé", 1);
             
         }
         
