@@ -1,10 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div>
-    <p>Page du bateau n°{{ boat.id }}</p>
-    <p>{{ boat.title }}</p>
-    <img src="../{{ boat.pictureFileName }}" alt="Illustration de l'annonce" width="300">
-</div>
+<main class="flex items-start m-4 gap-x-4">
+    <div>
+        <img src="../{{ boat.pictureFileName }}" alt="Illustration de l'annonce" width="300">
+    </div>
+    <div class="flex flex-col items-start">
+        <h1 class="text-3xl">{{ boat.title }}</h1>
+        
+        <p>{{ boat.price }}€</p>
+        <form action="/checkout/{{boat.id}}" method="POST">
+            <button type="submit" class="block px-3 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 text-white" id="checkout-button">Payer</button>
+        </form>
+    </div>
+</main>
 
 {% endblock %}
