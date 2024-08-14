@@ -24,7 +24,7 @@ class CheckoutController extends AbstractController
             'mode' => 'payment',
             'line_items' => [[
                 'price_data' => [
-                    'unit_amount_decimal' => $boatPrice,
+                    'unit_amount_decimal' => $boatPrice*100,
                     'currency' => 'EUR',
                     'product_data' => [
                         'name' => $boat->getTitle(),
@@ -37,13 +37,10 @@ class CheckoutController extends AbstractController
             'cancel_url' => $this->generateUrl('app_cancel_checkout', array('type' => 'param'), UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 
-        header("HTTP/1.1 303 See Other");
-        header("Location: " . $checkout_session->url);
-
         try {
-            return $this->redirectToRoute($checkout_session->url);
+            return $this->redirect($checkout_session->url);
         } catch (RouteNotFoundException $e) {
-            throw new RouteNotFoundException("La page n'a pas été trouvé", 1);
+            throw new RouteNotFoundException("La page de paiement demandé n'a pas été trouvé", 1);
             
         }
         
