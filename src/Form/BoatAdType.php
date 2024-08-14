@@ -56,10 +56,6 @@ class BoatAdType extends AbstractType
                     ])
                 ]
             ])
-            ->add('texte', SubmitType::class, [
-                'label' => "Poster l'annonce",
-                "attr" => ['class' => "btn"]
-            ])
         ;
     }
 

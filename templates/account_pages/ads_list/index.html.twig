@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualisez l'ensemble de vos annonces{% endblock %}
+
+{% block body %}
+<div>
+    <h1 class="text-center text-2xl">Vos annonces</h1>
+
+    <div class="flex flex-wrap justify-center gap-x-4">
+        {% for boat in boats %}
+        <div class="w-48 border">
+            <a href="{{ path('app_boat_show', {'id': boat.id}) }}">
+                <img src="{{boat.pictureFilename}}" class="w-full">
+            </a>
+            <p>{{boat.title}}</p>
+            <p>{{boat.price}}</p>
+            <div>
+                <a class="btn" href="{{ path('app_boat_edit', {'id': boat.id}) }}" role="button">Modifier</a>
+                {{ include('pages/boat/_delete_form.html.twig') }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
