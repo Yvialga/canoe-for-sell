@@ -25,7 +25,7 @@ class BoatAdType extends AbstractType
             ->add('boatType', ChoiceType::class, [
                 'choices' => [
                     'kayak' => 'kayak',
-                    'canoë' => 'canoë'
+                    'canoe' => 'canoe'
                 ],
                 'attr' => ['class' => 'border']
             ])

@@ -3,11 +3,20 @@
 {% block title %}Accueil d'app{% endblock %}
 
 {% block body %}
+<div class="js-filter">
+    <section id="filter-band" class="my-8 pl-5 sticky flex items-center gap-x-4 top-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 19.857V21m0-1.143a2.93 2.93 0 0 1-2.427-1.272m2.427 1.272a2.93 2.93 0 0 0 2.427-1.272M16.5 14.143a2.93 2.93 0 0 1 2.427 1.272M16.5 14.143a2.93 2.93 0 0 0-2.427 1.272m2.427-1.272V13m3.5 1.714l-1.073.701M13 19.285l1.073-.7M13 14.715l1.073.7M20 19.285l-1.073-.7m0-3.17a2.8 2.8 0 0 1 0 3.17m-4.854-3.17a2.8 2.8 0 0 0 0 3.17M4 3h16M4 9h16M4 15h5" color="currentColor"/></svg>
+        {% include "layout/_filter.html.twig" with {form: form} only %}
+    </section>
 
-<div class="flex flex-wrap justify-center sm:justify-start gap-5">
-{% for boat in boatsList %}
-    <twig:BoatCard image="{{ boat.pictureFileName }}" title="{{ boat.title }}" price="{{ boat.price}}" brand="{{ boat.brand }}" type="{{ boat.boatType }}" id='{{ boat.id }}' />
-{% endfor %}
+    <section>
+        <div class="js-filter-content flex flex-wrap justify-center sm:justify-start gap-5">
+            {% include "components/_boats.html.twig" %}
+        </div>
+        <div class="js-filter-pagination">
+            {{ knp_pagination_render(boats) }}
+        </div>
+    </section>
 </div>
 
 {% endblock %}

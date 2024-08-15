@@ -2,42 +2,66 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Boat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Boat>
  */
 class BoatRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    private PaginatorInterface $paginator;
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Boat::class);
+        $this->paginator = $paginator;
     }
 
-//    /**
-//     * @return Boat[] Returns an array of Boat objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**Get boats linked to a search
+     * @return PaginationInterface
+     */
+    public function findSearch(SearchData $search): PaginationInterface {
 
-//    public function findOneBySomeField($value): ?Boat
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $query = $this
+            ->createQueryBuilder('b');
+
+        if (!empty($search->boat)) {
+            $query = $query
+                ->andWhere('b.boatType IN (:boat)')
+                ->setParameter('boat', $search->boat)
+            ;
+        }
+        if (!empty($search->places)) {
+            $query = $query
+                ->andWhere('b.numberOfPlaces = :places')
+                ->setParameter('places', $search->places)
+            ;
+        }
+        if (!empty($search->min)) {
+            $query = $query
+                ->andWhere('b.price >= :min')
+                ->setParameter('min', $search->min)
+            ;
+        }
+        if (!empty($search->max)) {
+            $query = $query
+                ->andWhere('b.price <= :max')
+                ->setParameter('max', $search->max)
+            ;
+        }
+
+        $query = $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            3
+        );
+    }
+
 }

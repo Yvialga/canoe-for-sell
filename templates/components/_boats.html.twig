@@ -1,0 +1,3 @@
+{% for boat in boats %}
+    <twig:BoatCard image="{{ boat.pictureFileName }}" title="{{ boat.title }}" price="{{ boat.price}}" brand="{{ boat.brand }}" type="{{ boat.boatType }}" id='{{ boat.id }}' />
+{% endfor %}
