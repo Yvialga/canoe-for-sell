@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\Positive;
 
 class BoatAdType extends AbstractType
 {
@@ -34,13 +35,23 @@ class BoatAdType extends AbstractType
             ])
             ->add('numberOfPlaces', NumberType::class, [
                 'html5' => true,
-                "attr" => ['class' => "border"]
+                "attr" => ['class' => "border"],
+                'constraints' => [
+                    new Positive([
+                        "message" => "Veuillez entrer un chiffre positif"
+                    ])
+                ]
             ])
             ->add('material', null, [
                 "attr" => ['class' => "border"]
             ])
             ->add('price', MoneyType::class, [
-                "attr" => ['class' => "border"]
+                "attr" => ['class' => "border"],
+                'constraints' => [
+                    new Positive([
+                        "message" => "Veuillez entrer un chiffre positif"
+                    ])
+                ]
             ])
             ->add('description', TextareaType::class, [
                 "attr" => ['class' => "border"]
