@@ -9,3 +9,7 @@
 .btn {
     @apply text-lg px-2 py-1 rounded-md bg-sky-700 text-white hover:bg-sky-300 hover:text-black
 }
+
+a {
+    @apply underline hover:no-underline
+}
