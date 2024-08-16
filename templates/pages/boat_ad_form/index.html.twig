@@ -28,9 +28,11 @@
         {{ form_help(form.title) }}
     </div>
 
+    {# <img src="{{vich_uploader_asset()}}" alt=""> https://www.youtube.com/watch?v=jEamSmhPTiM #}
+
     <div class="flex flex-col items-start">
         {{ form_label(form.picture, null, {
-            'label': "Titre de l'annonce"
+            'label': "Photo"
         }) }}
         {{ form_errors(form.picture) }}
         {{ form_widget(form.picture, {'attr': {'class': 'border'}}) }}
