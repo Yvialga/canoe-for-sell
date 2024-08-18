@@ -48,10 +48,12 @@ class BoatController extends AbstractController
         ): Response {
 
         $boatAd = new Boat();
-        $form = $this->createForm(BoatAdType::class, $boatAd)->add('texte', SubmitType::class, [
+        $form = $this->createForm(BoatAdType::class, $boatAd)
+            ->add('texte', SubmitType::class, [
             'label' => "Poster",
             "attr" => ['class' => "btn"]
-        ]);
+            ])
+        ;
         Clock::set(new MockClock());
         $clock = Clock::get();
         $user = $this->getUser();

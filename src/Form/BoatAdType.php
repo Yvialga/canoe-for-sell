@@ -8,8 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
@@ -20,7 +20,7 @@ class BoatAdType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', null, [
+            ->add('title', TextType::class, [
                 "attr" => ['class' => "border"]
             ])
             ->add('boatType', ChoiceType::class, [
@@ -30,7 +30,7 @@ class BoatAdType extends AbstractType
                 ],
                 'attr' => ['class' => 'border']
             ])
-            ->add('brand', null, [
+            ->add('brand', TextType::class, [
                 "attr" => ['class' => "border"]
             ])
             ->add('numberOfPlaces', NumberType::class, [
@@ -38,11 +38,11 @@ class BoatAdType extends AbstractType
                 "attr" => ['class' => "border"],
                 'constraints' => [
                     new Positive([
-                        "message" => "Veuillez entrer un chiffre positif"
+                        "message" => "Veuillez entrer un chiffre positif entre 1 et 2"
                     ])
                 ]
             ])
-            ->add('material', null, [
+            ->add('material', TextType::class, [
                 "attr" => ['class' => "border"]
             ])
             ->add('price', MoneyType::class, [

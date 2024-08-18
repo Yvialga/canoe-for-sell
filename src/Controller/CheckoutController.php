@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class CheckoutController extends AbstractController
 {
     #[Route('/checkout/{id}', name: 'app_checkout')]
-    public function index(BoatRepository $boatRepository, int $id): Response
+    public function checkoutSession(BoatRepository $boatRepository, int $id): Response
     {
         $boat = $boatRepository->find($id);
         $boatPrice = $boat->getPrice();
@@ -40,9 +40,23 @@ class CheckoutController extends AbstractController
         try {
             return $this->redirect($checkout_session->url);
         } catch (RouteNotFoundException $e) {
-            throw new RouteNotFoundException("La page de paiement demandé n'a pas été trouvé", 1);
+            throw new RouteNotFoundException("Impossible d'accéder à la page de paiement", 1);
             
         }
         
+    }
+
+    #[Route('/cancel-checkout', name: 'app_cancel_checkout')]
+    public function cancelCheckout(): Response
+    {
+        return $this->render('pages/payement/cancel.html.twig', [
+        ]);
+    }
+
+    #[Route('/success-checkout', name: 'app_success_checkout')]
+    public function successCheckout(): Response
+    {
+        return $this->render('pages/payement/success.html.twig', [
+        ]);
     }
 }
