@@ -1,10 +1,10 @@
-<a href="/boat/{{ id }}">
- <div class="max-w-xs">
-    <img src="{{ image }}" alt="Image illustrant l'annonce" width="" class="h-72 object-cover">
-    <div class="px-4 py-2.5 border-x-2 border-b-2 rounded-b-lg">
+<a href="/boat/{{ id }}" class="boat-component">
+ <div>
+    <img src="{{ image }}" alt="Image illustrant l'annonce" width="" class="h-72 object-cover w-full rounded-t-md">
+    <div class="px-4 py-2.5">
         <em class="not-italic">{{ price }}€</em>
         <h4 class="first-letter:uppercase">{{ title }}</h4>
-        <div class="flex justify-between">
+        <div class="flex justify-between mt-2">
             <p>Particulier</p>
             <p>
                 <span class="uppercase">{{ brand }}</span>
