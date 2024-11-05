@@ -10,34 +10,38 @@
 
     {% if app.user %}
         <div class="">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="underline decoration-red-700">Logout</a>
+            You are already logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="underline decoration-red-700">Logout</a>
         </div>
     {% else %}
-        <h1 class="">Please sign in</h1>
-        <p>
-            Besoin d'un compte ?
-            <a href="{{ path('app_register') }}" class="underline decoration-green-600">En créer un</a>
-        </p>
-        <form method="post" action="{{ path('app_login') }}">
-            <label for="username">Username</label>
-            <input type="text" value="{{ last_username }}" name="_username" id="username" class="border" autocomplete="username" required autofocus>
-            <label for="password">Password</label>
-            <input type="password" name="_password" id="password" class="border" autocomplete="current-password" required>
+        <section class="flex flex-col items-center justify-center ">
+            <h1 class="font-bold text-3xl my-5">Sign in</h1>
+            <form method="post" action="{{ path('app_login') }}" class="flex flex-col items-center justifuy-center gap-y-3">
+                <label for="username" class="w-full">
+                    <input type="text" value="{{ last_username }}" name="_username" id="username" class="border rounded-lg px-2 py-1 w-full placeholder:text-black/85" autocomplete="username" placeholder="Username" required autofocus>
+                </label>
+                <label for="password" class="w-full">
+                    <input type="password" name="_password" id="password" class="border rounded-lg px-2 py-1 w-full placeholder:text-black/85" placeholder="Password" autocomplete="current-password" required>
+                </label>
 
-            <input type="hidden" name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}"
-            >
-            <div class="checkbox">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-            <div class="mb-3">
-                <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
-            </div>
-            <button class="border" type="submit">
-                Sign in
-            </button>
-        </form>
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+                <div class="checkbox">
+                    <input type="checkbox" name="_remember_me" id="_remember_me">
+                    <label for="_remember_me">Remember me</label>
+                </div>
+                <div class="mb-3">
+                    <a href="{{ path('app_forgot_password_request') }}" class="underline-offset-2">Mot de passe oublié ?</a>
+                </div>
+                <button class="border bg-amber-500 px-3 py-2 w-full font-semibold rounded-xl" type="submit">
+                    Sign in
+                </button>
+                 <p>
+                    Besoin d'un compte ?
+                    <a href="{{ path('app_register') }}" class="underline">En créer un</a>
+                </p>
+            </form>
+        </section>
     {% endif %}
 
 {% endblock %}
