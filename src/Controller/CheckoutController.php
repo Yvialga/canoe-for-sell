@@ -41,9 +41,7 @@ class CheckoutController extends AbstractController
             return $this->redirect($checkout_session->url);
         } catch (RouteNotFoundException $e) {
             throw new RouteNotFoundException("Impossible d'accéder à la page de paiement", 1);
-            
         }
-        
     }
 
     #[Route('/cancel-checkout', name: 'app_cancel_checkout')]

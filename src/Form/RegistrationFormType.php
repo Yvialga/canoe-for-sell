@@ -14,7 +14,6 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
 use Symfony\Component\Validator\Constraints\PasswordStrength;
-use Symfony\Component\Validator\Constraints\Positive;
 
 class RegistrationFormType extends AbstractType
 {
@@ -22,14 +21,6 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
             ->add('email', EmailType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -48,13 +39,20 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez entrer un mot de passe !',
                     ]),
                     new Length([
-                        'min' => 3,
+                        'min' => 12,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                     new PasswordStrength(),
                     new NotCompromisedPassword(),
+                ],
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms.',
+                    ]),
                 ],
             ])
         ;

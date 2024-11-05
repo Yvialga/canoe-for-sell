@@ -41,11 +41,7 @@ class BoatController extends AbstractController
     }
 
     #[Route('/new-ad', name: 'app_new_ad')]
-    public function newAd(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        FileUploader $fileUploader
-        ): Response {
+    public function newAd(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response {
 
         $boatAd = new Boat();
         $form = $this->createForm(BoatAdType::class, $boatAd)

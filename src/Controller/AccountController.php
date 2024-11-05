@@ -12,9 +12,8 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 class AccountController extends AbstractController
 {
     #[Route('/your-ads', name: 'app_ads_list')]
-    public function adsList(#[CurrentUser()] ?User $user, BoatRepository $boatRepository): Response
-    {
-
+    public function adsList(#[CurrentUser()] ?User $user, BoatRepository $boatRepository): Response {
+        
         if (null === $user) {
             return $this->redirectToRoute('app_index');
         }

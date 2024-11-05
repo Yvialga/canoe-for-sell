@@ -30,21 +30,24 @@ class SearchForm extends AbstractType {
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Nombre de places'
+                    'placeholder' => 'Nombre de places',
+                    'class' => "border"
                 ]
             ])
             ->add('min', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Prix min'
+                    'placeholder' => 'Prix min',
+                    'class' => "border"
                 ]
             ])
             ->add('max', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Prix max'
+                    'placeholder' => 'Prix max',
+                    'class' => "border"
                 ]
             ])
         ;

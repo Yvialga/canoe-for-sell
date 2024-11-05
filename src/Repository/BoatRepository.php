@@ -23,7 +23,8 @@ class BoatRepository extends ServiceEntityRepository
         $this->paginator = $paginator;
     }
 
-    /**Get boats linked to a search
+    /**
+     * Get boats linked to a search.
      * @return PaginationInterface
      */
     public function findSearch(SearchData $search): PaginationInterface {

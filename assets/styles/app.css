@@ -11,5 +11,9 @@
 }
 
 a {
-    @apply underline hover:no-underline
+    @apply no-underline hover:underline
+}
+
+.boat-component {
+    width: 320px;
 }
